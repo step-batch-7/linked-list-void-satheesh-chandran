@@ -157,3 +157,17 @@ void forEach(List_ptr src, ElementProcessor processor)
     current = current->next;
   }
 }
+
+List_ptr reverse(List_ptr src)
+{
+  List_ptr reverse_list = create_list();
+  Node_ptr current = src->first;
+  while (current != NULL)
+  {
+    int *element = malloc(sizeof(int));
+    *element = *(int *)current->element;
+    add_to_start(reverse_list, element);
+    current = current->next;
+  }
+  return reverse_list;
+}

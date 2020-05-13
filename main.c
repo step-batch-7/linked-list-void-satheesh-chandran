@@ -105,6 +105,10 @@ int main()
   // add_unique(list, number, &is_numbers_equal);
   // display_linked_number_list(list);
 
+  // List_ptr reverse_list = reverse(list);
+  // display_linked_number_list(reverse_list);
+  // free_list(reverse_list);
+
   free_list(list);
   return 0;
 }
