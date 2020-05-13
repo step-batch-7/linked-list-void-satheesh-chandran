@@ -13,6 +13,13 @@ Element square(Element element)
   return (Element)result;
 }
 
+Element add(Element data1, Element data2)
+{
+  int *result = malloc(sizeof(int));
+  *result = *(int *)data1 + *(int *)data2;
+  return (Element)result;
+}
+
 /////////////////////////////////////////////////
 
 Element get_input_number(void)
@@ -61,9 +68,14 @@ int main()
   // free(removed_element);
   // display_linked_number_list(list);
 
-  List_ptr squares_of_numbers = map(list, &square);
-  display_linked_number_list(squares_of_numbers);
-  free_list(squares_of_numbers);
+  // List_ptr squares_of_numbers = map(list, &square);
+  // display_linked_number_list(squares_of_numbers);
+  // free_list(squares_of_numbers);
+
+  int initial = 0;
+  Element sum_of_all_numbers = reduce(list, &initial, &add);
+  printf("%d\n", *(int *)sum_of_all_numbers);
+  free(sum_of_all_numbers);
 
   free_list(list);
   return 0;

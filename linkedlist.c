@@ -103,3 +103,18 @@ List_ptr map(List_ptr src, Mapper mapper)
   }
   return map_list;
 }
+
+Element reduce(List_ptr src, Element init, Reducer reducer)
+{
+  int *final_result = malloc(sizeof(int));
+  *final_result = *(int *)init;
+  Node_ptr current = src->first;
+  while (current != NULL)
+  {
+    Element reducer_result = (*reducer)(final_result, current->element);
+    free(final_result);
+    final_result = (int *)reducer_result;
+    current = current->next;
+  }
+  return (Element)final_result;
+}
