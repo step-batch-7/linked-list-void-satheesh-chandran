@@ -44,7 +44,7 @@ int main()
   // input_number = get_input_number();
   // add_to_start(list, input_number);
 
-  Element removed_element = remove_from_end(list);
+  Element removed_element = remove_from_start(list);
   printf("%d\n", *(int *)removed_element);
   free(removed_element);
   display_linked_number_list(list);

@@ -32,30 +32,30 @@ Status clear_list(List_ptr list)
   return Success;
 }
 
-Status add_to_list(List_ptr src, Element element)
+Status add_to_list(List_ptr list, Element element)
 {
   Node_ptr node = create_node(element);
-  if (src->first == NULL)
+  if (list->first == NULL)
   {
-    src->first = node;
+    list->first = node;
   }
   else
   {
-    src->last->next = node;
+    list->last->next = node;
   }
-  src->last = node;
-  src->length++;
+  list->last = node;
+  list->length++;
   return Success;
 }
 
-Status add_to_start(List_ptr src, Element element)
+Status add_to_start(List_ptr list, Element element)
 {
-  if (src->first == NULL)
-    return add_to_list(src, element);
+  if (list->first == NULL)
+    return add_to_list(list, element);
   Node_ptr node = create_node(element);
-  node->next = src->first;
-  src->first = node;
-  src->length++;
+  node->next = list->first;
+  list->first = node;
+  list->length++;
   return Success;
 }
 
@@ -72,8 +72,20 @@ Element remove_from_end(List_ptr list)
     list->first = list->last;
   if (list->last != NULL)
     list->last->next = NULL;
-  Element removed_element = pair.current->element;
+  Element removing_element = pair.current->element;
   free(pair.current);
   list->length--;
-  return removed_element;
+  return removing_element;
+}
+
+Element remove_from_start(List_ptr list)
+{
+  Node_ptr head = list->first;
+  Element removing_element = head->element;
+  list->first = head->next;
+  free(head);
+  if (list->first == NULL)
+    list->last = NULL;
+  list->length--;
+  return removing_element;
 }
