@@ -55,7 +55,7 @@ Status insert_at(List_ptr, Element element, int position);
 
 List_ptr reverse(List_ptr);
 
-List_ptr map(List_ptr, Mapper);
+List_ptr map(List_ptr, Mapper); // Done
 List_ptr filter(List_ptr, Predicate);
 Element reduce(List_ptr, Element, Reducer);
 void forEach(List_ptr, ElementProcessor processor);

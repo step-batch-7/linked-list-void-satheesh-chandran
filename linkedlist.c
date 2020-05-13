@@ -89,3 +89,17 @@ Element remove_from_start(List_ptr list)
   list->length--;
   return removing_element;
 }
+
+/////////////////////////////////////////////////
+
+List_ptr map(List_ptr src, Mapper mapper)
+{
+  List_ptr map_list = create_list();
+  Node_ptr current = src->first;
+  while (current != NULL)
+  {
+    add_to_list(map_list, (*mapper)(current->element));
+    current = current->next;
+  }
+  return map_list;
+}

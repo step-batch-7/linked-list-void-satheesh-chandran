@@ -3,6 +3,18 @@
 #include <string.h>
 #include "linkedlist.h"
 
+/////////////////////////////////////////////////
+
+Element square(Element element)
+{
+  int *result = malloc(sizeof(int));
+  int number = *(int *)element;
+  *result = number * number;
+  return (Element)result;
+}
+
+/////////////////////////////////////////////////
+
 Element get_input_number(void)
 {
   int *number = malloc(sizeof(int));
@@ -44,10 +56,14 @@ int main()
   // input_number = get_input_number();
   // add_to_start(list, input_number);
 
-  Element removed_element = remove_from_start(list);
-  printf("%d\n", *(int *)removed_element);
-  free(removed_element);
-  display_linked_number_list(list);
+  // Element removed_element = remove_from_start(list);
+  // printf("%d\n", *(int *)removed_element);
+  // free(removed_element);
+  // display_linked_number_list(list);
+
+  List_ptr squares_of_numbers = map(list, &square);
+  display_linked_number_list(squares_of_numbers);
+  free_list(squares_of_numbers);
 
   free_list(list);
   return 0;
