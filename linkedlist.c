@@ -59,6 +59,18 @@ Status add_to_start(List_ptr list, Element element)
   return Success;
 }
 
+Status add_unique(List_ptr list, Element element, Matcher matcher)
+{
+  Node_ptr current = list->first;
+  while (current != NULL)
+  {
+    if ((*matcher)(element, current->element))
+      return Failure;
+    current = current->next;
+  }
+  return add_to_list(list, element);
+}
+
 Element remove_from_end(List_ptr list)
 {
   Pair pair = {NULL, list->first};

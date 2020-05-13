@@ -28,8 +28,12 @@ Status is_even(Element element)
 void increment(Element element)
 {
   int *number = (int *)element;
-  // *number = *number + 1;
   (*number)++;
+}
+
+Status is_numbers_equal(Element data1, Element data2)
+{
+  return *(int *)data1 == *(int *)data2 ? Success : Failure;
 }
 
 /////////////////////////////////////////////////
@@ -93,8 +97,13 @@ int main()
   // display_linked_number_list(even_numbers);
   // free_list(even_numbers);
 
-  forEach(list, &increment);
-  display_linked_number_list(list);
+  // forEach(list, &increment);
+  // display_linked_number_list(list);
+
+  // int *number = malloc(sizeof(int));
+  // *number = 10;
+  // add_unique(list, number, &is_numbers_equal);
+  // display_linked_number_list(list);
 
   free_list(list);
   return 0;
