@@ -135,3 +135,13 @@ List_ptr filter(List_ptr src, Predicate predicate)
   }
   return filter_list;
 }
+
+void forEach(List_ptr src, ElementProcessor processor)
+{
+  Node_ptr current = src->first;
+  while (current != NULL)
+  {
+    (*processor)(current->element);
+    current = current->next;
+  }
+}

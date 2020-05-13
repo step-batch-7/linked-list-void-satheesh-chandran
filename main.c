@@ -25,6 +25,13 @@ Status is_even(Element element)
   return *(int *)element % 2 == 0 ? Success : Failure;
 }
 
+void increment(Element element)
+{
+  int *number = (int *)element;
+  // *number = *number + 1;
+  (*number)++;
+}
+
 /////////////////////////////////////////////////
 
 Element get_input_number(void)
@@ -82,9 +89,12 @@ int main()
   // printf("%d\n", *(int *)sum_of_all_numbers);
   // free(sum_of_all_numbers);
 
-  List_ptr even_numbers = filter(list, &is_even);
-  display_linked_number_list(even_numbers);
-  free_list(even_numbers);
+  // List_ptr even_numbers = filter(list, &is_even);
+  // display_linked_number_list(even_numbers);
+  // free_list(even_numbers);
+
+  forEach(list, &increment);
+  display_linked_number_list(list);
 
   free_list(list);
   return 0;
