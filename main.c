@@ -20,6 +20,11 @@ Element add(Element data1, Element data2)
   return (Element)result;
 }
 
+Status is_even(Element element)
+{
+  return *(int *)element % 2 == 0 ? Success : Failure;
+}
+
 /////////////////////////////////////////////////
 
 Element get_input_number(void)
@@ -72,10 +77,14 @@ int main()
   // display_linked_number_list(squares_of_numbers);
   // free_list(squares_of_numbers);
 
-  int initial = 0;
-  Element sum_of_all_numbers = reduce(list, &initial, &add);
-  printf("%d\n", *(int *)sum_of_all_numbers);
-  free(sum_of_all_numbers);
+  // int initial = 0;
+  // Element sum_of_all_numbers = reduce(list, &initial, &add);
+  // printf("%d\n", *(int *)sum_of_all_numbers);
+  // free(sum_of_all_numbers);
+
+  List_ptr even_numbers = filter(list, &is_even);
+  display_linked_number_list(even_numbers);
+  free_list(even_numbers);
 
   free_list(list);
   return 0;

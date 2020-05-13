@@ -118,3 +118,20 @@ Element reduce(List_ptr src, Element init, Reducer reducer)
   }
   return (Element)final_result;
 }
+
+List_ptr filter(List_ptr src, Predicate predicate)
+{
+  List_ptr filter_list = create_list();
+  Node_ptr current = src->first;
+  while (current != NULL)
+  {
+    if ((*predicate)(current->element))
+    {
+      int *element = malloc(sizeof(int));
+      *element = *(int *)current->element;
+      add_to_list(filter_list, element);
+    }
+    current = current->next;
+  }
+  return filter_list;
+}
