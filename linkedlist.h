@@ -41,9 +41,9 @@ typedef Element (*Reducer)(Element, Element);
 typedef void (*ElementProcessor)(Element);
 typedef Status (*Matcher)(Element, Element);
 
-List_ptr create_list(void);
+List_ptr create_list(void); // Done
 
-Status add_to_list(List_ptr, Element);
+Status add_to_list(List_ptr, Element); // Done
 Status add_to_start(List_ptr, Element);
 Status insert_at(List_ptr, Element element, int position);
 
@@ -63,5 +63,5 @@ List_ptr remove_all_occurrences(List_ptr, Element element, Matcher matcher); // 
 
 Status add_unique(List_ptr list, Element element, Matcher matcher);
 
-Status clear_list(List_ptr);
+Status clear_list(List_ptr); // Done
 #endif

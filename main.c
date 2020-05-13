@@ -7,7 +7,7 @@ Element get_input_number(void)
 {
   int *number = malloc(sizeof(int));
   printf("Enter number : ");
-  scanf("%d\n", number);
+  scanf("%d\n",  number);
   return number;
 }
 
@@ -24,14 +24,7 @@ void display_linked_number_list(List_ptr list)
 
 void free_list(List_ptr list)
 {
-  Node_ptr current = list->first;
-  while (current != NULL)
-  {
-    Node_ptr node_to_be_free = current;
-    current = current->next;
-    free(node_to_be_free->element);
-    free(node_to_be_free);
-  }
+  clear_list(list);
   free(list);
 }
 
@@ -45,6 +38,10 @@ int main()
     add_to_list(list, input_number);
     input_number = get_input_number();
   }
+  display_linked_number_list(list);
+  input_number = get_input_number();
+  input_number = get_input_number();
+  add_to_start(list, input_number);
   display_linked_number_list(list);
   free_list(list);
   return 0;
