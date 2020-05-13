@@ -53,7 +53,7 @@ Status add_to_list(List_ptr, Element); // Done
 Status add_to_start(List_ptr, Element); // Done
 Status insert_at(List_ptr, Element element, int position);
 
-List_ptr reverse(List_ptr);
+List_ptr reverse(List_ptr); // Done
 
 List_ptr map(List_ptr, Mapper); // Done
 List_ptr filter(List_ptr, Predicate); // Done

@@ -29,6 +29,7 @@ Status clear_list(List_ptr list)
     free(node_to_be_free->element);
     free(node_to_be_free);
   }
+  free(list);
   return Success;
 }
 

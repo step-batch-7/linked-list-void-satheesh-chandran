@@ -57,12 +57,6 @@ void display_linked_number_list(List_ptr list)
   printf("\n");
 }
 
-void free_list(List_ptr list)
-{
-  clear_list(list);
-  free(list);
-}
-
 int main()
 {
   List_ptr list = create_list();
@@ -86,7 +80,7 @@ int main()
 
   // List_ptr squares_of_numbers = map(list, &square);
   // display_linked_number_list(squares_of_numbers);
-  // free_list(squares_of_numbers);
+  // clear_list(squares_of_numbers);
 
   // int initial = 0;
   // Element sum_of_all_numbers = reduce(list, &initial, &add);
@@ -95,7 +89,7 @@ int main()
 
   // List_ptr even_numbers = filter(list, &is_even);
   // display_linked_number_list(even_numbers);
-  // free_list(even_numbers);
+  // clear_list(even_numbers);
 
   // forEach(list, &increment);
   // display_linked_number_list(list);
@@ -107,8 +101,8 @@ int main()
 
   // List_ptr reverse_list = reverse(list);
   // display_linked_number_list(reverse_list);
-  // free_list(reverse_list);
+  // clear_list(reverse_list);
 
-  free_list(list);
+  clear_list(list);
   return 0;
 }
