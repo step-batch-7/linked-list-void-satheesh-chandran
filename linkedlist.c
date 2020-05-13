@@ -68,7 +68,10 @@ Element remove_from_end(List_ptr list)
     pair.current = pair.current->next;
   }
   list->last = pair.prev;
-  pair.prev->next = NULL;
+  if (list->last == NULL)
+    list->first = list->last;
+  if (list->last != NULL)
+    list->last->next = NULL;
   Element removed_element = pair.current->element;
   free(pair.current);
   list->length--;
