@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-// typedef struct Prev_Current_pair
-// {
-//   Node_ptr prev;
-//   Node_ptr current;
-// } Pair;
-
 Node_ptr create_node(Element element)
 {
   Node_ptr new_node = malloc(sizeof(Node));
@@ -65,12 +59,18 @@ Status add_to_start(List_ptr src, Element element)
   return Success;
 }
 
-// Element remove_from_end(List_ptr list)
-// {
-//   Pair pair = {NULL, list->first};
-//   for (int index = 0; index < list->length; index++)
-//   {
-//     pair.prev = pair.current;
-//     pair.current = pair.current->next;
-//   }
-// }
+Element remove_from_end(List_ptr list)
+{
+  Pair pair = {NULL, list->first};
+  for (int index = 1; index < list->length; index++)
+  {
+    pair.prev = pair.current;
+    pair.current = pair.current->next;
+  }
+  list->last = pair.prev;
+  pair.prev->next = NULL;
+  Element removed_element = pair.current->element;
+  free(pair.current);
+  list->length--;
+  return removed_element;
+}

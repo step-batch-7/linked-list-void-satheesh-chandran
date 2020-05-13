@@ -26,6 +26,12 @@ typedef struct node
 
 typedef Node *Node_ptr;
 
+typedef struct Prev_Current_pair
+{
+  Node_ptr prev;
+  Node_ptr current;
+} Pair;
+
 typedef struct linklist
 {
   Node *first;
@@ -44,7 +50,7 @@ typedef Status (*Matcher)(Element, Element);
 List_ptr create_list(void); // Done
 
 Status add_to_list(List_ptr, Element); // Done
-Status add_to_start(List_ptr, Element);
+Status add_to_start(List_ptr, Element); // Done
 Status insert_at(List_ptr, Element element, int position);
 
 List_ptr reverse(List_ptr);
