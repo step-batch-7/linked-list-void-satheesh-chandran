@@ -81,7 +81,7 @@ Status insert_at(List_ptr list, Element element, int position)
   if (position < 0 || position > list->length)
     return Failure;
   Node_ptr current = list->first;
-  for (int index = 1; index < list->length - 1; index++)
+  for (int index = 1; index < position; index++)
   {
     current = current->next;
   }
@@ -120,6 +120,25 @@ Element remove_from_start(List_ptr list)
   if (list->first == NULL)
     list->last = NULL;
   list->length--;
+  return removing_element;
+}
+
+Element remove_at(List_ptr list, int position)
+{
+  if (position == list->length - 1)
+    return remove_from_end(list);
+  if (position == 0)
+    return remove_from_start(list);
+  Node_ptr current = list->first;
+  for (int index = 1; index < position; index++)
+  {
+    current = current->next;
+  }
+  Node_ptr node_to_be_free = current->next;
+  current->next = current->next->next;
+  list->length--;
+  Element removing_element = node_to_be_free->element;
+  free(node_to_be_free);
   return removing_element;
 }
 
