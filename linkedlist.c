@@ -156,6 +156,28 @@ Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
   return element;
 }
 
+List_ptr remove_all_occurrences(List_ptr list, Element element, Matcher matcher)
+{
+  int position = 0;
+  List_ptr elemments_list = create_list();
+  Node_ptr current = list->first;
+  while (current != NULL)
+  {
+    Node_ptr next = current->next;
+    if ((*matcher)(current->element, element))
+    {
+      Element removed_element = remove_at(list, position);
+      add_to_list(elemments_list, removed_element);
+    }
+    else
+    {
+      position++;
+    }
+    current = next;
+  }
+  return elemments_list;
+}
+
 /////////////////////////////////////////////////
 
 List_ptr map(List_ptr src, Mapper mapper)
