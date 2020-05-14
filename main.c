@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "linkedlist.h"
 
 /////////////////////////////////////////////////
@@ -46,6 +45,16 @@ Element get_input_number(void)
   return number;
 }
 
+void display_element(Element element)
+{
+  if (element == NULL)
+  {
+    printf("\n");
+    return;
+  }
+  printf("%d\n", *(int *)element);
+}
+
 void display_linked_number_list(List_ptr list)
 {
   Node_ptr current = list->first;
@@ -55,6 +64,46 @@ void display_linked_number_list(List_ptr list)
     current = current->next;
   }
   printf("\n");
+}
+
+void perform_map(List_ptr list)
+{
+  List_ptr squares_of_numbers = map(list, &square);
+  printf("\nSQUARE OF NUMBERS\n");
+  display_linked_number_list(squares_of_numbers);
+  clear_list(squares_of_numbers);
+}
+
+void perform_filter(List_ptr list)
+{
+  List_ptr even_numbers = filter(list, &is_even);
+  printf("\nEVEN NUMBERS\n");
+  display_linked_number_list(even_numbers);
+  clear_list(even_numbers);
+}
+
+void perform_reduce(List_ptr list)
+{
+ int initial = 0;
+  Element sum_of_all_numbers = reduce(list, &initial, &add);
+  printf("\nSUM OF ALL NUMBERS\n");
+  display_element(sum_of_all_numbers);
+  free(sum_of_all_numbers);
+}
+
+void perform_reverse(List_ptr list)
+{
+  List_ptr reverse_list = reverse(list);
+  printf("\nREVERSE OF LIST\n");
+  display_linked_number_list(reverse_list);
+  clear_list(reverse_list);
+}
+
+void perform_forEach(List_ptr list)
+{
+  forEach(list, &increment);
+  printf("\nINCREMENTED BY ONE\n");
+  display_linked_number_list(list);
 }
 
 int main()
@@ -68,6 +117,12 @@ int main()
     input_number = get_input_number();
   }
   display_linked_number_list(list);
+
+  perform_map(list);
+  perform_filter(list);
+  perform_reduce(list);
+  perform_reverse(list);
+  perform_forEach(list);
 
   // input_number = get_input_number();
   // input_number = get_input_number();
@@ -93,30 +148,10 @@ int main()
   // display_linked_number_list(list);
   // display_linked_number_list(removed_elements);
 
-  // List_ptr squares_of_numbers = map(list, &square);
-  // display_linked_number_list(squares_of_numbers);
-  // clear_list(squares_of_numbers);
-
-  // int initial = 0;
-  // Element sum_of_all_numbers = reduce(list, &initial, &add);
-  // printf("%d\n", *(int *)sum_of_all_numbers);
-  // free(sum_of_all_numbers);
-
-  // List_ptr even_numbers = filter(list, &is_even);
-  // display_linked_number_list(even_numbers);
-  // clear_list(even_numbers);
-
-  // forEach(list, &increment);
-  // display_linked_number_list(list);
-
   // int *number = malloc(sizeof(int));
   // *number = 10;
   // add_unique(list, number, &is_numbers_equal);
   // display_linked_number_list(list);
-
-  // List_ptr reverse_list = reverse(list);
-  // display_linked_number_list(reverse_list);
-  // clear_list(reverse_list);
 
   clear_list(list);
   return 0;
