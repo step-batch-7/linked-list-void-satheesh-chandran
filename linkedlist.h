@@ -60,11 +60,11 @@ List_ptr filter(List_ptr, Predicate); // Done
 Element reduce(List_ptr, Element, Reducer); // Done
 void forEach(List_ptr, ElementProcessor processor); // Done
 
-Element remove_from_start(List_ptr); // Returns Element which was removed
+Element remove_from_start(List_ptr); // Returns Element which was removed // Done
 Element remove_from_end(List_ptr); // Done
-Element remove_at(List_ptr, int position);
+Element remove_at(List_ptr, int position); // Done
 
-Element remove_first_occurrence(List_ptr, Element element, Matcher matcher);
+Element remove_first_occurrence(List_ptr, Element element, Matcher matcher); // Done
 List_ptr remove_all_occurrences(List_ptr, Element element, Matcher matcher); // Returns List of removed elements
 
 Status add_unique(List_ptr list, Element element, Matcher matcher); // Done

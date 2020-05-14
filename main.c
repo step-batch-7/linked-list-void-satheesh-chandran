@@ -86,6 +86,11 @@ int main()
   // Element removed_element = remove_at(list, 2);
   // display_linked_number_list(list);
 
+  // int *number = malloc(sizeof(int));
+  // *number = 1;
+  // Element removed_element = remove_first_occurrence(list, number, &is_numbers_equal);
+  // display_linked_number_list(list);
+
   // List_ptr squares_of_numbers = map(list, &square);
   // display_linked_number_list(squares_of_numbers);
   // clear_list(squares_of_numbers);

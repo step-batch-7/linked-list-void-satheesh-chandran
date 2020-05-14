@@ -142,6 +142,20 @@ Element remove_at(List_ptr list, int position)
   return removing_element;
 }
 
+Element remove_first_occurrence(List_ptr list, Element element, Matcher matcher)
+{
+  int position = 0;
+  Node_ptr current = list->first;
+  while (current != NULL)
+  {
+    if ((*matcher)(current->element, element))
+      return remove_at(list, position);
+    current = current->next;
+    position++;
+  }
+  return element;
+}
+
 /////////////////////////////////////////////////
 
 List_ptr map(List_ptr src, Mapper mapper)
