@@ -73,6 +73,11 @@ int main()
   // input_number = get_input_number();
   // add_to_start(list, input_number);
 
+  int *number = malloc(sizeof(int));
+  *number = 10;
+  insert_at(list, number, 1);
+  display_linked_number_list(list);
+
   // Element removed_element = remove_from_start(list);
   // printf("%d\n", *(int *)removed_element);
   // free(removed_element);

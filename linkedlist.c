@@ -72,6 +72,26 @@ Status add_unique(List_ptr list, Element element, Matcher matcher)
   return add_to_list(list, element);
 }
 
+Status insert_at(List_ptr list, Element element, int position)
+{
+  if (position == list->length)
+    return add_to_list(list, element);
+  if (position == 0)
+    return add_to_start(list, element);
+  if (position < 0 || position > list->length)
+    return Failure;
+  Node_ptr current = list->first;
+  for (int index = 1; index < list->length - 1; index++)
+  {
+    current = current->next;
+  }
+  Node_ptr node = create_node(element);
+  node->next = current->next;
+  current->next = node;
+  list->length++;
+  return Success;
+}
+
 Element remove_from_end(List_ptr list)
 {
   Pair pair = {NULL, list->first};
