@@ -47,27 +47,27 @@ typedef Element (*Reducer)(Element, Element);
 typedef void (*ElementProcessor)(Element);
 typedef Status (*Matcher)(Element, Element);
 
-List_ptr create_list(void); // Done
+List_ptr create_list(void);
 
-Status add_to_list(List_ptr, Element); // Done
-Status add_to_start(List_ptr, Element); // Done
-Status insert_at(List_ptr, Element element, int position); // Done
+Status add_to_list(List_ptr, Element);
+Status add_to_start(List_ptr, Element);
+Status insert_at(List_ptr, Element element, int position);
 
-List_ptr reverse(List_ptr); // Done
+List_ptr reverse(List_ptr);
 
-List_ptr map(List_ptr, Mapper); // Done
-List_ptr filter(List_ptr, Predicate); // Done
-Element reduce(List_ptr, Element, Reducer); // Done
-void forEach(List_ptr, ElementProcessor processor); // Done
+List_ptr map(List_ptr, Mapper);
+List_ptr filter(List_ptr, Predicate);
+Element reduce(List_ptr, Element, Reducer);
+void forEach(List_ptr, ElementProcessor processor);
 
-Element remove_from_start(List_ptr); // Returns Element which was removed // Done
-Element remove_from_end(List_ptr); // Done
-Element remove_at(List_ptr, int position); // Done
+Element remove_from_start(List_ptr); // Returns Element which was removed
+Element remove_from_end(List_ptr);
+Element remove_at(List_ptr, int position);
 
-Element remove_first_occurrence(List_ptr, Element element, Matcher matcher); // Done
-List_ptr remove_all_occurrences(List_ptr, Element element, Matcher matcher); // Returns List of removed elements // Done
+Element remove_first_occurrence(List_ptr, Element element, Matcher matcher);
+List_ptr remove_all_occurrences(List_ptr, Element element, Matcher matcher); // Returns List of removed elements
 
-Status add_unique(List_ptr list, Element element, Matcher matcher); // Done
+Status add_unique(List_ptr list, Element element, Matcher matcher);
 
-Status clear_list(List_ptr); // Done
+Status clear_list(List_ptr); // Pending
 #endif

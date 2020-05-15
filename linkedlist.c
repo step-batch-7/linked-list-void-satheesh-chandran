@@ -29,7 +29,6 @@ Status clear_list(List_ptr list)
   }
   list->first = NULL;
   list->last = NULL;
-  // free(list);
   return Success;
 }
 

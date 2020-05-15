@@ -66,12 +66,6 @@ void display_linked_number_list(List_ptr list)
   printf("\n");
 }
 
-void destroy_list(List_ptr list)
-{
-  clear_list(list);
-  free(list);
-}
-
 void print_status(Status status)
 {
   if (status == Success)
@@ -80,6 +74,12 @@ void print_status(Status status)
     return;
   }
   printf("Not Done");
+}
+
+void destroy_list(List_ptr list)
+{
+  clear_list(list);
+  free(list);
 }
 
 void perform_map(List_ptr list)
