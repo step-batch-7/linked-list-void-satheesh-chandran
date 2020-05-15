@@ -37,12 +37,12 @@ Status is_numbers_equal(Element data1, Element data2)
 
 /////////////////////////////////////////////////
 
-Element get_input_number(void)
+Element get_input_number(const char question[])
 {
-  int *number = malloc(sizeof(int));
-  printf("Enter number : ");
-  scanf("%d\n",  number);
-  return number;
+  int *number_ptr = malloc(sizeof(int));
+  printf("%s", question);
+  scanf("%d\n",  number_ptr);
+  return (Element)number_ptr;
 }
 
 void display_element(Element element)
@@ -66,12 +66,28 @@ void display_linked_number_list(List_ptr list)
   printf("\n");
 }
 
+void destroy_list(List_ptr list)
+{
+  clear_list(list);
+  free(list);
+}
+
+void print_status(Status status)
+{
+  if (status == Success)
+  {
+    printf("Done");
+    return;
+  }
+  printf("Not Done");
+}
+
 void perform_map(List_ptr list)
 {
   List_ptr squares_of_numbers = map(list, &square);
   printf("\nSQUARE OF NUMBERS\n");
   display_linked_number_list(squares_of_numbers);
-  clear_list(squares_of_numbers);
+  destroy_list(squares_of_numbers);
 }
 
 void perform_filter(List_ptr list)
@@ -79,7 +95,7 @@ void perform_filter(List_ptr list)
   List_ptr even_numbers = filter(list, &is_even);
   printf("\nEVEN NUMBERS\n");
   display_linked_number_list(even_numbers);
-  clear_list(even_numbers);
+  destroy_list(even_numbers);
 }
 
 void perform_reduce(List_ptr list)
@@ -96,7 +112,7 @@ void perform_reverse(List_ptr list)
   List_ptr reverse_list = reverse(list);
   printf("\nREVERSE OF LIST\n");
   display_linked_number_list(reverse_list);
-  clear_list(reverse_list);
+  destroy_list(reverse_list);
 }
 
 void perform_forEach(List_ptr list)
@@ -110,12 +126,14 @@ int main()
 {
   List_ptr list = create_list();
 
-  Element input_number = get_input_number();
+  Element input_number = get_input_number("Enter number : ");
   while (*(int *)input_number != 99)
   {
     add_to_list(list, input_number);
-    input_number = get_input_number();
+    input_number = get_input_number("Enter number : ");
   }
+
+  printf("\nYOU ENTERED\n");
   display_linked_number_list(list);
 
   perform_map(list);
@@ -124,8 +142,8 @@ int main()
   perform_reverse(list);
   perform_forEach(list);
 
-  // input_number = get_input_number();
-  // input_number = get_input_number();
+  // input_number = get_input_number("Enter number : ");
+  // input_number = get_input_number("Enter number : ");
   // add_to_start(list, input_number);
 
   // int *number = malloc(sizeof(int));
@@ -153,6 +171,6 @@ int main()
   // add_unique(list, number, &is_numbers_equal);
   // display_linked_number_list(list);
 
-  clear_list(list);
+  destroy_list(list);
   return 0;
 }

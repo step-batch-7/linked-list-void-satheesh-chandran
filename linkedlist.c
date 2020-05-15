@@ -23,12 +23,11 @@ Status clear_list(List_ptr list)
   Node_ptr current = list->first;
   while (current != NULL)
   {
-    Node_ptr node_to_be_free = current;
+    free(current->element);
+    free(current);
     current = current->next;
-    free(node_to_be_free->element);
-    free(node_to_be_free);
   }
-  free(list);
+  // free(list);
   return Success;
 }
 
