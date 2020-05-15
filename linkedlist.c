@@ -29,6 +29,7 @@ Status clear_list(List_ptr list)
   }
   list->first = NULL;
   list->last = NULL;
+  list->length = 0;
   return Success;
 }
 
