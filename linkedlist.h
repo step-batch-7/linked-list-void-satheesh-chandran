@@ -61,6 +61,8 @@ List_ptr filter(List_ptr, Predicate);
 Element reduce(List_ptr, Element, Reducer);
 void forEach(List_ptr, ElementProcessor processor);
 void selection_sort(List_ptr list, Comparator comparator);
+void bubble_sort(List_ptr list, Comparator comparator);
+void insertion_sort(List_ptr list, Comparator comparator);
 
 Element remove_from_start(List_ptr); // Returns Element which was removed
 Element remove_from_end(List_ptr);

@@ -264,24 +264,25 @@ Node_ptr find_node(List_ptr list, int index)
   return current;
 }
 
-void selection_sort(List_ptr list, Comparator comparator)
-{
-  for (int i = 0; i < list->length; i++)
-  {
-    int index_of_min = i;
-    for (int j = i + 1; j < list->length; j++)
-    {
-      if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
-      {
-        index_of_min = j;
-      }
-    }
-    insert_at(list, find_node(list, i)->element, index_of_min);
-    remove_at(list, i);
-    Element min_element = remove_at(list, index_of_min);
-    insert_at(list, min_element, i);
-  }
-}
+// void selection_sort(List_ptr list, Comparator comparator)
+// {
+//   for (int i = 0; i < list->length; i++)
+//   {
+//     int index_of_min = i;
+//     for (int j = i + 1; j < list->length; j++)
+//     {
+//       if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
+//       {
+//         index_of_min = j;
+//       }
+//     }
+//     Node_ptr i_node = find_node(list, i);
+//     Node_ptr min_node = find_node(list, index_of_min);
+//     Element temp = i_node->element;
+//     i_node->element = min_node->element;
+//     min_node->element = temp;
+//   }
+// }
 
 void bubble_sort(List_ptr list, Comparator comparator)
 {
@@ -290,12 +291,13 @@ void bubble_sort(List_ptr list, Comparator comparator)
   {
     for (int j = 1; j < list->length; j++)
     {
-      if (comparator(find_node(list, j - 1)->element, find_node(list, j)->element))
+      Node_ptr prev_node = find_node(list, j - 1);
+      if (comparator(prev_node->element, prev_node->next->element))
       {
-        insert_at(list, find_node(list, j - 1)->element, j);
-        remove_at(list, j - 1);
-        Element min_element = remove_at(list, j);
-        insert_at(list, min_element, j - 1);
+        Node_ptr j_node = prev_node->next;
+        Element temp = j_node->element;
+        j_node->element = prev_node->element;
+        prev_node->element = temp;
         is_swap = 1;
       }
     }
@@ -310,12 +312,13 @@ void insertion_sort(List_ptr list, Comparator comparator)
   {
     for (int j = i; j > 0; j--)
     {
-      if (comparator(find_node(list, j - 1)->element, find_node(list, j)->element))
+      Node_ptr prev_node = find_node(list, j - 1);
+      if (comparator(prev_node->element, prev_node->next->element))
       {
-        insert_at(list, find_node(list, j - 1)->element, j);
-        remove_at(list, j - 1);
-        Element min_element = remove_at(list, j);
-        insert_at(list, min_element, j - 1);
+        Node_ptr j_node = prev_node->next;
+        Element temp = j_node->element;
+        j_node->element = prev_node->element;
+        prev_node->element = temp;
       }
     }
   }
