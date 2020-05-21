@@ -264,25 +264,25 @@ Node_ptr find_node(List_ptr list, int index)
   return current;
 }
 
-// void selection_sort(List_ptr list, Comparator comparator)
-// {
-//   for (int i = 0; i < list->length; i++)
-//   {
-//     int index_of_min = i;
-//     for (int j = i + 1; j < list->length; j++)
-//     {
-//       if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
-//       {
-//         index_of_min = j;
-//       }
-//     }
-//     Node_ptr i_node = find_node(list, i);
-//     Node_ptr min_node = find_node(list, index_of_min);
-//     Element temp = i_node->element;
-//     i_node->element = min_node->element;
-//     min_node->element = temp;
-//   }
-// }
+void selection_sort(List_ptr list, Comparator comparator)
+{
+  for (int i = 0; i < list->length; i++)
+  {
+    int index_of_min = i;
+    for (int j = i + 1; j < list->length; j++)
+    {
+      if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
+      {
+        index_of_min = j;
+      }
+    }
+    Node_ptr i_node = find_node(list, i);
+    Node_ptr min_node = find_node(list, index_of_min);
+    Element temp = i_node->element;
+    i_node->element = min_node->element;
+    min_node->element = temp;
+  }
+}
 
 void bubble_sort(List_ptr list, Comparator comparator)
 {
