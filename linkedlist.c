@@ -253,3 +253,70 @@ List_ptr reverse(List_ptr src)
   }
   return reverse_list;
 }
+
+Node_ptr find_node(List_ptr list, int index)
+{
+  Node_ptr current = list->first;
+  for (int i = 0; i < index; i++)
+  {
+    current = current->next;
+  }
+  return current;
+}
+
+void selection_sort(List_ptr list, Comparator comparator)
+{
+  for (int i = 0; i < list->length; i++)
+  {
+    int index_of_min = i;
+    for (int j = i + 1; j < list->length; j++)
+    {
+      if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
+      {
+        index_of_min = j;
+      }
+    }
+    insert_at(list, find_node(list, i)->element, index_of_min);
+    remove_at(list, i);
+    Element min_element = remove_at(list, index_of_min);
+    insert_at(list, min_element, i);
+  }
+}
+
+void bubble_sort(List_ptr list, Comparator comparator)
+{
+  int is_swap = 0;
+  for (int i = 0; i < list->length; i++)
+  {
+    for (int j = 1; j < list->length; j++)
+    {
+      if (comparator(find_node(list, j - 1)->element, find_node(list, j)->element))
+      {
+        insert_at(list, find_node(list, j - 1)->element, j);
+        remove_at(list, j - 1);
+        Element min_element = remove_at(list, j);
+        insert_at(list, min_element, j - 1);
+        is_swap = 1;
+      }
+    }
+    if (!is_swap) return;
+    is_swap = 0;
+  }
+}
+
+void insertion_sort(List_ptr list, Comparator comparator)
+{
+  for (int i = 0; i < list->length; i++)
+  {
+    for (int j = i; j > 0; j--)
+    {
+      if (comparator(find_node(list, j - 1)->element, find_node(list, j)->element))
+      {
+        insert_at(list, find_node(list, j - 1)->element, j);
+        remove_at(list, j - 1);
+        Element min_element = remove_at(list, j);
+        insert_at(list, min_element, j - 1);
+      }
+    }
+  }
+}

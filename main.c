@@ -35,6 +35,11 @@ Status is_numbers_equal(Element data1, Element data2)
   return *(int *)data1 == *(int *)data2 ? Success : Failure;
 }
 
+Status is_greater_than(Element data1, Element data2)
+{
+  return *(int *)data1 > *(int *)data2 ? Success : Failure;
+}
+
 /////////////////////////////////////////////////
 
 Element get_input_number(const char question[])
@@ -122,6 +127,13 @@ void perform_forEach(List_ptr list)
   display_linked_number_list(list);
 }
 
+void perform_selection_sort(List_ptr list)
+{
+  selection_sort(list, &is_greater_than);
+  printf("\nSORTED LINKED LIST IS\n");
+  display_linked_number_list(list);
+}
+
 int main()
 {
   List_ptr list = create_list();
@@ -136,11 +148,12 @@ int main()
   printf("\nYOU ENTERED\n");
   display_linked_number_list(list);
 
-  perform_map(list);
-  perform_filter(list);
-  perform_reduce(list);
-  perform_reverse(list);
-  perform_forEach(list);
+  // perform_map(list);
+  // perform_filter(list);
+  // perform_reduce(list);
+  // perform_reverse(list);
+  // perform_forEach(list);
+  perform_selection_sort(list);
 
   // input_number = get_input_number("Enter number : ");
   // input_number = get_input_number("Enter number : ");
