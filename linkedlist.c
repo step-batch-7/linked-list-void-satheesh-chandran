@@ -264,40 +264,40 @@ Node_ptr find_node(List_ptr list, int index)
   return current;
 }
 
-void selection_sort(List_ptr list, Comparator comparator)
-{
-  for (int i = 0; i < list->length; i++)
-  {
-    int index_of_min = i;
-    for (int j = i + 1; j < list->length; j++)
-    {
-      if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
-      {
-        index_of_min = j;
-      }
-    }
-    Node_ptr i_node = find_node(list, i);
-    Node_ptr min_node = find_node(list, index_of_min);
-    Element temp = i_node->element;
-    i_node->element = min_node->element;
-    min_node->element = temp;
-  }
-}
+// void selection_sort(List_ptr list, Comparator comparator)
+// {
+//   for (int i = 0; i < list->length; i++)
+//   {
+//     int index_of_min = i;
+//     for (int j = i + 1; j < list->length; j++)
+//     {
+//       if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
+//       {
+//         index_of_min = j;
+//       }
+//     }
+//     Node_ptr i_node = find_node(list, i);
+//     Node_ptr min_node = find_node(list, index_of_min);
+//     Element temp = i_node->element;
+//     i_node->element = min_node->element;
+//     min_node->element = temp;
+//   }
+// }
 
 void bubble_sort(List_ptr list, Comparator comparator)
 {
   int is_swap = 0;
   for (int i = 0; i < list->length; i++)
   {
-    for (int j = 1; j < list->length; j++)
+    for (int j = 0; j < list->length - 1; j++)
     {
-      Node_ptr prev_node = find_node(list, j - 1);
-      if (comparator(prev_node->element, prev_node->next->element))
+      Node_ptr current_node = find_node(list, j);
+      if (comparator(current_node->element, current_node->next->element))
       {
-        Node_ptr j_node = prev_node->next;
-        Element temp = j_node->element;
-        j_node->element = prev_node->element;
-        prev_node->element = temp;
+        Node_ptr next_node = current_node->next;
+        Element temp = next_node->element;
+        next_node->element = current_node->element;
+        current_node->element = temp;
         is_swap = 1;
       }
     }
