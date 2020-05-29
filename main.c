@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "linkedlist.h"
 
 /////////////////////////////////////////////////
@@ -134,16 +135,36 @@ void perform_selection_sort(List_ptr list)
   display_linked_number_list(list);
 }
 
+void perform_quick_sort(List_ptr list)
+{
+  quick_sort(list, &is_greater_than, 0, list->length);
+  printf("\nSORTED LINKED LIST IS\n");
+  display_linked_number_list(list);
+}
+
+void perform_insertion(List_ptr list, int terms)
+{
+  for (int index = 0; index < terms; index++)
+  {
+    char number = (char)random();
+    int *number_ptr = malloc(sizeof(int));
+    *number_ptr = (int)number;
+    add_to_list(list, number_ptr);
+  }
+}
+
 int main()
 {
   List_ptr list = create_list();
 
-  Element input_number = get_input_number("Enter number : ");
-  while (*(int *)input_number != 99)
-  {
-    add_to_list(list, input_number);
-    input_number = get_input_number("Enter number : ");
-  }
+  // Element input_number = get_input_number("Enter number : ");
+  // while (*(int *)input_number != 99)
+  // {
+  //   add_to_list(list, input_number);
+  //   input_number = get_input_number("Enter number : ");
+  // }
+
+  perform_insertion(list, 50);
 
   printf("\nYOU ENTERED\n");
   display_linked_number_list(list);
@@ -153,7 +174,8 @@ int main()
   // perform_reduce(list);
   // perform_reverse(list);
   // perform_forEach(list);
-  perform_selection_sort(list);
+  // perform_selection_sort(list);
+  perform_quick_sort(list);
 
   // input_number = get_input_number("Enter number : ");
   // input_number = get_input_number("Enter number : ");

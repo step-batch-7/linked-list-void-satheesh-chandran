@@ -264,25 +264,25 @@ Node_ptr find_node(List_ptr list, int index)
   return current;
 }
 
-// void selection_sort(List_ptr list, Comparator comparator)
-// {
-//   for (int i = 0; i < list->length; i++)
-//   {
-//     int index_of_min = i;
-//     for (int j = i + 1; j < list->length; j++)
-//     {
-//       if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
-//       {
-//         index_of_min = j;
-//       }
-//     }
-//     Node_ptr i_node = find_node(list, i);
-//     Node_ptr min_node = find_node(list, index_of_min);
-//     Element temp = i_node->element;
-//     i_node->element = min_node->element;
-//     min_node->element = temp;
-//   }
-// }
+void selection_sort(List_ptr list, Comparator comparator)
+{
+  for (int i = 0; i < list->length; i++)
+  {
+    int index_of_min = i;
+    for (int j = i + 1; j < list->length; j++)
+    {
+      if (comparator(find_node(list, index_of_min)->element, find_node(list, j)->element))
+      {
+        index_of_min = j;
+      }
+    }
+    Node_ptr i_node = find_node(list, i);
+    Node_ptr min_node = find_node(list, index_of_min);
+    Element temp = i_node->element;
+    i_node->element = min_node->element;
+    min_node->element = temp;
+  }
+}
 
 void bubble_sort(List_ptr list, Comparator comparator)
 {
@@ -322,4 +322,28 @@ void insertion_sort(List_ptr list, Comparator comparator)
       }
     }
   }
+}
+
+void quick_sort(List_ptr list, Comparator comparator, int slice_point, int length)
+{
+  if (length - slice_point <= 1) return;
+  int pivot_pos = length - 1;
+  Element pivot = find_node(list, pivot_pos)->element;
+  int index = slice_point;
+  Pair pair = {NULL, find_node(list, index)};
+  while(index < pivot_pos)
+  {
+    pair.prev = pair.current;
+    pair.current = pair.current->next;
+    if (comparator(pair.prev->element, pivot))
+    {
+      Element element = remove_at(list, index);
+      insert_at(list, element, length - 1);
+      pivot_pos--;
+      index--;
+    }
+    index++;
+  }
+  quick_sort(list, comparator, slice_point, pivot_pos);
+  quick_sort(list, comparator, pivot_pos + 1, length);
 }
